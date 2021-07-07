@@ -1,3 +1,232 @@
-.navbar {
-    background-color:purple;
+/*****************************/ 
+/* Semantic Dashboard custom */
+/*****************************/ 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600;700&display=swap');
+
+/* Functions */
+@function color($color-name) {
+    @return map-get($colors, $color-name)
+};
+
+/* Variables */
+$colors: (
+    primary:  #0d1524,
+    /* primary-light: lighten(#0d1524, 12%),*/
+    primary-light : #1d2535,
+    primary-dark: darken(#0d1524, 12%),
+    highlighted : #e0a32b,
+    highlighted-text : #0d1524,
+    button-confirm : #15a556,
+    theme-purple : linear-gradient(to right, #8651e8,#d856e8),
+    theme-purple-icon : #460780d1,
+    theme-orange : linear-gradient(to right, #f3595a,#ff9754),
+    theme-orange-icon : #b626269f,
+    theme-green : linear-gradient(to right, #00d541, #2eeb90),
+    theme-green-icon : #069446eb,
+    theme-blue : linear-gradient(to right, #4146f4, #0bdff0),
+    theme-blue-icon : #003086c2,
+);
+ 
+$sansserif: 'Montserrat', sans-serif;
+$extralight: 200;
+$light : 300;
+$regular : 400;
+$semibold : 600;
+$bold : 700;
+
+/* Theming */
+body, h1, h2, h3, h4, h5 {
+    font-family: $sansserif !important;
+    color:white;
+    a {
+        font-family: $sansserif !important; 
+    }
+}
+.button-cta-fill {
+    cursor: pointer;
+    display: inline-block;
+    outline: 0;
+    border: none;
+    border-radius: 5px;
+    vertical-align: baseline;
+    background-color: color(button-confirm);
+    color: #fff;
+    text-transform: none;
+    text-shadow: none;
+    font-weight: 700;
+    line-height: 1em;
+    font-style: normal;
+    text-align: center;
+    transition: 0.2s all !important;
+    &:hover {
+        background-color: color(highlighted);
+    }
+    &:active, &:focus {
+        background-color:color(highlighted);
+    }
+}
+.ui.button {
+    @extend .button-cta-fill;
+}
+.ui.label {
+    background-color:color(highlighted);
+    color:color(highlight-text);
+}
+.ui.form .field>label {
+    color:white;
+    font-weight: $light;
+}
+.ui.segment {
+    margin:0;
+}
+.ui.raised.raised.segment, .ui.raised.raised.segments {
+    height:100%;
+}
+.ui.card, .ui.cards>.card {
+    display:relative;
+    background-color: color(primary);
+    border:none;
+    box-shadow: none !important;
+    padding:0.35em 0;
+    overflow:hidden;
+    i {
+        position:absolute;
+        left:20px;
+        top:20px;
+        font-size:1.6em;
+        color:color(primary);
+    }
+    &.purple {
+        background:color(theme-purple);
+        i {
+            color:color(theme-purple-icon);
+        }
+    }
+    &.orange {
+        background:color(theme-orange);
+        i {
+            color:color(theme-orange-icon);
+        }
+    }
+    &.green {
+        background:color(theme-green);
+        i {
+            color:color(theme-green-icon);
+        }
+    }
+    &.blue {
+        background:color(theme-blue);
+        i {
+            color:color(theme-blue-icon);
+        }
+    }
+}
+.ui.statistic>.value, .ui.statistics .statistic>.value {
+    color:color(primary);
+    padding-right:15%;
+    text-align:right;
+}
+.ui.statistic>.label, .ui.statistics .statistic>.label {
+    color:color(primary);
+    text-align:right;
+    padding-right:15%;
+}
+
+/* CSS */
+.goat_logo {
+    width:100%;
+    a {
+        width:100%;
+    }
+}
+.ui.top.menu.dashboard-header .logo {
+    height:60px;
+}
+.ui.inverted.menu {
+    background-color:color(primary);
+}
+.ui.inverted.menu .active.item {
+    background-color:color(highlighted);
+}
+.ui.segment {
+    background-color: color(primary);
+}
+.ui {
+    .tab-content {
+        background-color:color(primary-light);
+    }
+}
+.choose_player_window {
+    display:flex;
+    align-items: flex-end;
+    .field {
+        margin-right:10px !important;
+    }
+    button {
+        min-height:38px !important;
+    }
+}
+.player_card {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    height:100%;
+    color:white;
+    img {
+        margin-bottom:30px;
+        border-radius: 50%;
+        background-color:rgba(255, 255, 255, 0.116)
+    }
+}
+.player_numbers {
+    display:flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#playerPlot {
+    .main-svg:first-child {
+        border-radius:5px;
+        background:color(primary) !important;
+    }
+    .plotbg {
+        path {
+            fill:color(primary) !important;
+        }
+    }
+    .radial-line {
+        line {
+            stroke:white !important;
+        }
+    }
+    .xtick {
+        text {
+            fill:white !important;
+        }
+    }
+}
+#chart {
+    font-family: $sansserif !important;
+    button {
+        @extend .button-cta-fill;
+        height:50px;
+    }
+    .viewof_date {
+        margin:0 0 40px 0;
+    }
+    .title {
+        fill:white;
+        font:$light 2em $sansserif;
+    }
+    .subTitle {
+        display:none;
+    }
+    .yearText {
+        fill:color(highlighted);
+    }
+    .valueLabel {
+        fill:white;
+    }
+    .label {
+        font:$regular 1em $sansserif;
+    }
 }

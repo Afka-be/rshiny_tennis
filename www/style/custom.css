@@ -1,3 +1,229 @@
-.navbar {
-  background-color: purple;
+/*****************************/
+/* Semantic Dashboard custom */
+/*****************************/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600;700&display=swap");
+/* Functions */
+/* Variables */
+/* Theming */
+body, h1, h2, h3, h4, h5 {
+  font-family: "Montserrat", sans-serif !important;
+  color: white;
+}
+body a, h1 a, h2 a, h3 a, h4 a, h5 a {
+  font-family: "Montserrat", sans-serif !important;
+}
+
+.button-cta-fill, #chart button, .ui.button {
+  cursor: pointer;
+  display: inline-block;
+  outline: 0;
+  border: none;
+  border-radius: 5px;
+  vertical-align: baseline;
+  background-color: #15a556;
+  color: #fff;
+  text-transform: none;
+  text-shadow: none;
+  font-weight: 700;
+  line-height: 1em;
+  font-style: normal;
+  text-align: center;
+  -webkit-transition: 0.2s all !important;
+  transition: 0.2s all !important;
+}
+.button-cta-fill:hover, #chart button:hover, .ui.button:hover {
+  background-color: #e0a32b;
+}
+.button-cta-fill:active, #chart button:active, .ui.button:active, .button-cta-fill:focus, #chart button:focus, .ui.button:focus {
+  background-color: #e0a32b;
+}
+
+.ui.label {
+  background-color: #e0a32b;
+}
+
+.ui.form .field > label {
+  color: white;
+  font-weight: 300;
+}
+
+.ui.segment {
+  margin: 0;
+}
+
+.ui.raised.raised.segment, .ui.raised.raised.segments {
+  height: 100%;
+}
+
+.ui.card, .ui.cards > .card {
+  display: relative;
+  background-color: #0d1524;
+  border: none;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  padding: 0.35em 0;
+  overflow: hidden;
+}
+.ui.card i, .ui.cards > .card i {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  font-size: 1.6em;
+  color: #0d1524;
+}
+.ui.card.purple, .ui.cards > .card.purple {
+  background: -webkit-gradient(linear, left top, right top, from(#8651e8), to(#d856e8));
+  background: linear-gradient(to right, #8651e8, #d856e8);
+}
+.ui.card.purple i, .ui.cards > .card.purple i {
+  color: #460780d1;
+}
+.ui.card.orange, .ui.cards > .card.orange {
+  background: -webkit-gradient(linear, left top, right top, from(#f3595a), to(#ff9754));
+  background: linear-gradient(to right, #f3595a, #ff9754);
+}
+.ui.card.orange i, .ui.cards > .card.orange i {
+  color: #b626269f;
+}
+.ui.card.green, .ui.cards > .card.green {
+  background: -webkit-gradient(linear, left top, right top, from(#00d541), to(#2eeb90));
+  background: linear-gradient(to right, #00d541, #2eeb90);
+}
+.ui.card.green i, .ui.cards > .card.green i {
+  color: #069446eb;
+}
+.ui.card.blue, .ui.cards > .card.blue {
+  background: -webkit-gradient(linear, left top, right top, from(#4146f4), to(#0bdff0));
+  background: linear-gradient(to right, #4146f4, #0bdff0);
+}
+.ui.card.blue i, .ui.cards > .card.blue i {
+  color: #003086c2;
+}
+
+.ui.statistic > .value, .ui.statistics .statistic > .value {
+  color: #0d1524;
+  padding-right: 15%;
+  text-align: right;
+}
+
+.ui.statistic > .label, .ui.statistics .statistic > .label {
+  color: #0d1524;
+  text-align: right;
+  padding-right: 15%;
+}
+
+/* CSS */
+.goat_logo {
+  width: 100%;
+}
+.goat_logo a {
+  width: 100%;
+}
+
+.ui.top.menu.dashboard-header .logo {
+  height: 60px;
+}
+
+.ui.inverted.menu {
+  background-color: #0d1524;
+}
+
+.ui.inverted.menu .active.item {
+  background-color: #e0a32b;
+}
+
+.ui.segment {
+  background-color: #0d1524;
+}
+
+.ui .tab-content {
+  background-color: #1d2535;
+}
+
+.choose_player_window {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+.choose_player_window .field {
+  margin-right: 10px !important;
+}
+.choose_player_window button {
+  min-height: 38px !important;
+}
+
+.player_card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  color: white;
+}
+.player_card img {
+  margin-bottom: 30px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.116);
+}
+
+.player_numbers {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#playerPlot .main-svg:first-child {
+  border-radius: 5px;
+  background: #0d1524 !important;
+}
+#playerPlot .plotbg path {
+  fill: #0d1524 !important;
+}
+#playerPlot .radial-line line {
+  stroke: white !important;
+}
+#playerPlot .xtick text {
+  fill: white !important;
+}
+
+#chart {
+  font-family: "Montserrat", sans-serif !important;
+}
+#chart button {
+  height: 50px;
+}
+#chart .viewof_date {
+  margin: 0 0 40px 0;
+}
+#chart .title {
+  fill: white;
+  font: 300 2em "Montserrat", sans-serif;
+}
+#chart .subTitle {
+  display: none;
+}
+#chart .yearText {
+  fill: #e0a32b;
+}
+#chart .valueLabel {
+  fill: white;
+}
+#chart .label {
+  font: 400 1em "Montserrat", sans-serif;
 }

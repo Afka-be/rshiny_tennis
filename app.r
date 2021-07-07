@@ -1,6 +1,8 @@
-
 library(shiny)
-library(shinydashboard)
+#library(shinydashboard)
+library(shiny.semantic)
+library(semantic.dashboard)
+library(plotly) #Spiderchart
 library(robservable)
 library(tidyverse) #Needed for read_csv (not to be confused with read.csv)
 
@@ -8,108 +10,94 @@ library(tidyverse) #Needed for read_csv (not to be confused with read.csv)
 
 
 ui <- dashboardPage(
-
-    dashboardHeader(title = " Who is the goat?"),
-
-    dashboardSidebar(sidebarMenu(id = "sidebarid",
-      menuItem("Homepage", tabName = "homepage", icon = icon("dashboard")),
-      menuItem("General overview", tabName = "general", icon = icon("dashboard")),
-      menuItem("Player", tabName = "player",  icon = icon("address-card")),
-      conditionalPanel(
-      'input.sidebarid == "player"',
-      selectInput(inputId = "nom",
-                  label = "Choose a name",
-                  choices = c("Roger Federer","Raphael Nadal","Novak Djokovic"),
-                  multiple = FALSE),
-      actionButton(inputId = "clicks",
-                  label = "Update")
-      ))
-    ), # dashboardSidebar
-
-    dashboardBody(
-      # include the CSS file
-      tags$head(
-        tags$link(rel = "stylesheet", type = "text/css", href = "/style/custom.css")
-      ),
-      tabItems(
-        tabItem(tabName = "homepage",
-                fluidPage(img(src = 'images/logo.png', height = '600px', width = '600px'))
-        ),
-        tabItem(tabName = "general",
-                robservableOutput("chart", width = 600)
-        ),
-        tabItem(tabName = "player",
-              fluidRow(
-                box(
-                  title = "Resume", status = "warning",
-                  solidHeader = TRUE,
-                  width = 4,
-                  fluidRow(column(width = 8, imageOutput("playerimage", height = NULL)),
-                          column(width = 4,  htmlOutput("nom_text") , htmlOutput("nationalite_text"),  htmlOutput("age_text")))
-                ),
-                column(8,
-                  fluidRow(
-                    column(6, infoBoxOutput("Grandslams", width = NULL)),
-                    column(6, infoBoxOutput("Masters1000", width = NULL))
-                  ),
-                  fluidRow(
-                    column(6, infoBoxOutput("Olympicmedals", width = NULL)),
-                    column(6, infoBoxOutput("Weeksnr1", width = NULL))
+  margin = FALSE,
+  dashboardHeader(title = tags$div(class = 'goat_logo',
+                            tags$a(href='#',
+                            tags$img(src='images/logo_app.svg')),
+                          ),
+                  logo_path = "images/logo.svg",
+                  logo_align = "right",
+                  inverted = TRUE,
+                  dropdownMenu(type = "notifications",
+                    taskItem("Project progress...", 50.777, color = "red")
                   )
-                )
-              ), #fluidRow
-              fluidRow(
-                column(6,
-                tabBox(id = "Grand slams",
-                      title = "Grand slams", width = "800px",
-                      height = "250px",
-                      selected = "Grand chelems",
-                      tabPanel("Australian Open", ),
-                      tabPanel("Rolland Garros",  "Tab content Rolland Garros "),
-                      tabPanel("Wimbeldon",  "Tab cotent Wimbeldon"),
-                      tabPanel("US Open",  "Tab cotent US Open"))),
+                ),
 
-                column(6,
-                tabBox(id = "Masters 1000",
-                      title = "Masters 1000",
-                      width = "800px",
-                      height = "250px",
-                      selected = "Grand chelems",
-                      tabPanel("Australian Open", ),
-                      tabPanel("Rolland Garros",  "Tab content Rolland Garros "),
-                      tabPanel("Wimbeldon",  "Tab cotent Wimbeldon"),
-                      tabPanel("US Open",  "Tab cotent US Open")))
-              ), #fluidRow
-              fluidRow(
-                column(6,
-                tabBox(id = "Olympic Medals",
-                        title = "Olympic Medals",
-                        width = "800px",
-                        height = "250px",
-                        selected = "Grand chelems",
-                        tabPanel("Australian Open", ),
-                        tabPanel("Rolland Garros",  "Tab content Rolland Garros "),
-                        tabPanel("Wimbeldon",  "Tab cotent Wimbeldon"),
-                        tabPanel("US Open",  "Tab cotent US Open"))),
-
-                column(6,
-                tabBox(id = "Weeks nr 1 world",
-                        title = "Weeks nr 1 world",
-                        width = "800px",
-                        height = "250px",
-                        selected = "Grand chelems",
-                        tabPanel("Australian Open", ),
-                        tabPanel("Rolland Garros",  "Tab content Rolland Garros "),
-                        tabPanel("Wimbeldon",  "Tab cotent Wimbeldon"),
-                        tabPanel("US Open",  "Tab cotent US Open")))
-              ) #fluidRow
+  dashboardSidebar(
+    size = "wide",
+    inverted = TRUE,
+    sidebarMenu(
+      menuItem(tabName = "homepage", "Homepage", icon = icon("dashboard")),
+      menuItem(tabName = "general", "General overview", icon = icon("dashboard")),
+      menuItem(tabName = "player", "Player", icon = icon("address card"))
+    )
+  ),
+  dashboardBody(
+    # include the CSS file
+    tags$head(
+      tags$link(rel = "stylesheet", type = "text/css", href = "/style/custom.css"),
+    ),
+    tabItems(
+      selected = 1,
+      tabItem(
+        tabName = "homepage",
+        box(h1("Welcome"), title = "How to use", width = 16, color = "orange")
+      ),
+      tabItem(
+        tabName = "general",
+          fluidRow(
+            box(
+              width = 16,
+              h1("General overview"),
+              robservableOutput("chart", height = NULL)
+            ), #box
+          ), #fluidRow
+      ),
+      tabItem(tabName = "player",
+          fluidRow(
+            box(
+              width = 16,
+              h1("Choose a player"),
+              div(
+                class = "choose_player_window",
+                selectInput(
+                  inputId = "nom",
+                  label = "Choose a name",
+                  width = 450,
+                  choices = c("Roger Federer", "Raphael Nadal", "Novak Djokovic"),
+                  multiple = FALSE),
+                actionButton(inputId = "clicks",
+                              label = "Update")
+              ), #div
+            ), #box
+          ), #fluidRow
+          fluidRow(
+            box(
+              title = "Resume", status = "warning",
+              solidHeader = TRUE,
+              width = 4,
+              class = "player_card",
+              imageOutput("playerimage", height = NULL, width = NULL),
+              htmlOutput("nom_text") , htmlOutput("nationalite_text"),  htmlOutput("age_text")
+            ), #box
+            column(4,
+            class = "player_numbers",
+              infoBoxOutput("Grandslams"),
+              infoBoxOutput("Masters1000"),
+              infoBoxOutput("Olympicmedals"),
+              infoBoxOutput("Weeksnr1")
+            ), #column
+            column(8,
+              plotlyOutput("playerPlot")
+            )
+          ) #fluidRow
         ) #tabName player
-      ) # tabItems
-    ) # dashboardBody
-  ) # dashboardPage
+    ) #tabItems
+  )
+)
 
 
-server <- function(input, output) {
+server <- function(input, output, session) {
 
 var_playername  <- eventReactive(input$clicks, {
   input$nom})
@@ -142,7 +130,7 @@ d = playerchelems[, 5];
 
 
   infoBox(
-    "Grand slams", a+b+c+d,icon = icon("check-double", lib = "font-awesome"),
+    "Grand slams", a+b+c+d,icon = icon("check circle"),
     color = "purple"
   )
 })
@@ -152,7 +140,7 @@ output$Masters1000 <- renderInfoBox({
   e = playerchelems[, 6];
  
   infoBox(
-    "Masters 1000", e, icon = icon("check", lib = "font-awesome"),
+    "Masters 1000", e, icon = icon("check"),
     color = "orange"
   )
 })
@@ -161,7 +149,7 @@ output$Olympicmedals <- renderInfoBox({
   playerchelems <- subset(chelemsCSV, Nom == var_playername())  
   f = playerchelems[, 7];
   infoBox(
-    "Olympic medals", f, icon = icon("medal", lib = "font-awesome"),
+    "Olympic medals", f, icon = icon("trophy"),
     color = "green"
   )
 })
@@ -170,28 +158,60 @@ output$Weeksnr1 <- renderInfoBox({
   playerchelems <- subset(chelemsCSV, Nom == var_playername())  
   g = playerchelems[, 8];
   infoBox(
-    "Weeks nr 1 world", g, icon = icon("calendar-check",lib = "font-awesome"),
-    color = "maroon"
+    "Weeks nr 1 world", g, icon = icon("calendar check"),
+    color = "blue"
   )
 })
 
 
+output$playerPlot <- renderPlotly({
+  # Create data: note in High school for several students
+  fig <- plot_ly(
+    type = 'scatterpolar',
+    fill = 'toself'
+  ) 
+  fig <- fig %>%
+    add_trace(
+      r = c(39, 28, 8, 7, 28, 39),
+      theta = c('A','B','C', 'D', 'E', 'A'),
+      name = 'Group A'
+    )
+  fig <- fig %>%
+    add_trace(
+      r = c(1.5, 10, 39, 31, 15, 1.5),
+      theta = c('A','B','C', 'D', 'E', 'A'),
+      name = 'Group B'
+    )
+  fig <- fig %>%
+    layout(
+      polar = list(
+        radialaxis = list(
+          visible = T,
+          range = c(0,50)
+        )
+      )
+    )
+
+  fig
+})
+
 output$chart <- renderRobservable({
-  d <- read_csv2(file = 'csv/ere open 3.csv')
+  d <- read.csv(file = 'csv/ere open 3.csv', header = TRUE, sep = ";")
   robservable(
     "https://observablehq.com/@juba/bar-chart-race",
     include = c("viewof date", "chart", "draw", "styles"),
     hide = "draw",
     input = list(
       data = d,
-      title = "Cumulative number of grand slams in career over time?",
-      #subtitle = "Cumulative number of grand slams in career over time",
-      source = "Source : ATP Tour"
-      # tickDuration = 500,         # top_n = 10,
-      # color_scheme = "schemeSet3"
+      title = "Cumulative number of grand slams in career over time ?",
+      subtitle = "Cumulative number of grand slams in career over time",
+      source = "Source : ATP Tour",
+      tickDuration = 200,
+      # top_n = 10,
+      color_scheme = "schemeSet2"
     ),
     width = 700,
-    height = 400,
+    height = 600,
   )
 })
 
