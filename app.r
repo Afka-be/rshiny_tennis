@@ -196,7 +196,7 @@ output$playerPlot <- renderPlotly({
 })
 
 output$chart <- renderRobservable({
-  d <- read.csv(file = 'csv/ere open 3.csv', header = TRUE, sep = ";")
+  d <- read.csv(file = 'csv/ere open 3fix.csv', header = TRUE, sep = ";")
   robservable(
     "https://observablehq.com/@juba/bar-chart-race",
     include = c("viewof date", "chart", "draw", "styles"),
