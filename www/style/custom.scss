@@ -87,7 +87,7 @@ body, h1, h2, h3, h4, h5 {
     background-color: color(primary);
     border:none;
     box-shadow: none !important;
-    padding:0.35em 0;
+    padding:0.9em 0;
     overflow:hidden;
     i {
         position:absolute;
@@ -203,6 +203,11 @@ body, h1, h2, h3, h4, h5 {
             fill:white !important;
         }
     }
+    .angularaxistick {
+        text {
+            fill:color(highlighted) !important;
+        }
+    }
 }
 #chart {
     font-family: $sansserif !important;
@@ -227,6 +232,7 @@ body, h1, h2, h3, h4, h5 {
         fill:white;
     }
     .label {
-        font:$regular 1em $sansserif;
+        font:$semibold 1em $sansserif;
+        color:color(primary);
     }
 }

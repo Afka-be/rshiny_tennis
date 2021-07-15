@@ -61,7 +61,7 @@ body a, h1 a, h2 a, h3 a, h4 a, h5 a {
   border: none;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
-  padding: 0.35em 0;
+  padding: 0.9em 0;
   overflow: hidden;
 }
 .ui.card i, .ui.cards > .card i {
@@ -201,6 +201,9 @@ body a, h1 a, h2 a, h3 a, h4 a, h5 a {
 #playerPlot .xtick text {
   fill: white !important;
 }
+#playerPlot .angularaxistick text {
+  fill: #e0a32b !important;
+}
 
 #chart {
   font-family: "Montserrat", sans-serif !important;
@@ -225,5 +228,6 @@ body a, h1 a, h2 a, h3 a, h4 a, h5 a {
   fill: white;
 }
 #chart .label {
-  font: 400 1em "Montserrat", sans-serif;
+  font: 600 1em "Montserrat", sans-serif;
+  color: #0d1524;
 }

@@ -88,7 +88,7 @@ ui <- dashboardPage(
               infoBoxOutput("Weeksnr1")
             ), #column
             column(8,
-              plotlyOutput("playerPlot")
+              plotlyOutput("playerPlot", height = NULL)
             )
           ) #fluidRow
         ) #tabName player
@@ -122,11 +122,11 @@ chelemsCSV <- read.csv(file = "csv/chelems.csv", header = TRUE, sep = ";")
 
 
 output$Grandslams <- renderInfoBox({
-playerchelems <- subset(chelemsCSV, Nom == var_playername())
-a = playerchelems[, 2];
-b = playerchelems[, 3];
-c = playerchelems[, 4];
-d = playerchelems[, 5];
+  playerchelems <- subset(chelemsCSV, Nom == var_playername())
+  a = playerchelems[, 2];
+  b = playerchelems[, 3];
+  c = playerchelems[, 4];
+  d = playerchelems[, 5];
 
 
   infoBox(
@@ -165,6 +165,11 @@ output$Weeksnr1 <- renderInfoBox({
 
 
 output$playerPlot <- renderPlotly({
+  playerchelems <- subset(chelemsCSV, Nom == var_playername())
+  a = playerchelems[, 2];
+  b = playerchelems[, 3];
+  c = playerchelems[, 4];
+  d = playerchelems[, 5];
   # Create data: note in High school for several students
   fig <- plot_ly(
     type = 'scatterpolar',
@@ -172,22 +177,16 @@ output$playerPlot <- renderPlotly({
   ) 
   fig <- fig %>%
     add_trace(
-      r = c(39, 28, 8, 7, 28, 39),
-      theta = c('A','B','C', 'D', 'E', 'A'),
-      name = 'Group A'
-    )
-  fig <- fig %>%
-    add_trace(
-      r = c(1.5, 10, 39, 31, 15, 1.5),
-      theta = c('A','B','C', 'D', 'E', 'A'),
-      name = 'Group B'
+      r = c(a, b, c, d),
+      theta = c('Australian Open','Rolland Garros','Wimbeldon', 'US Open'),
+      name = 'Chelems'
     )
   fig <- fig %>%
     layout(
       polar = list(
         radialaxis = list(
           visible = T,
-          range = c(0,50)
+          range = c(0,14)
         )
       )
     )
