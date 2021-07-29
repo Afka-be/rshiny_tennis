@@ -183,7 +183,7 @@ body, h1, h2, h3, h4, h5 {
     flex-direction: column;
     justify-content: space-between;
 }
-#playerPlot {
+#select-playerPlot {
     .main-svg:first-child {
         border-radius:5px;
         background:color(primary) !important;
@@ -209,7 +209,7 @@ body, h1, h2, h3, h4, h5 {
         }
     }
 }
-#chart {
+#players-chart {
     font-family: $sansserif !important;
     button {
         @extend .button-cta-fill;

@@ -13,7 +13,7 @@ body a, h1 a, h2 a, h3 a, h4 a, h5 a {
   font-family: "Montserrat", sans-serif !important;
 }
 
-.button-cta-fill, #chart button, .ui.button {
+.button-cta-fill, #players-chart button, .ui.button {
   cursor: pointer;
   display: inline-block;
   outline: 0;
@@ -31,10 +31,10 @@ body a, h1 a, h2 a, h3 a, h4 a, h5 a {
   -webkit-transition: 0.2s all !important;
   transition: 0.2s all !important;
 }
-.button-cta-fill:hover, #chart button:hover, .ui.button:hover {
+.button-cta-fill:hover, #players-chart button:hover, .ui.button:hover {
   background-color: #e0a32b;
 }
-.button-cta-fill:active, #chart button:active, .ui.button:active, .button-cta-fill:focus, #chart button:focus, .ui.button:focus {
+.button-cta-fill:active, #players-chart button:active, .ui.button:active, .button-cta-fill:focus, #players-chart button:focus, .ui.button:focus {
   background-color: #e0a32b;
 }
 
@@ -188,46 +188,46 @@ body a, h1 a, h2 a, h3 a, h4 a, h5 a {
           justify-content: space-between;
 }
 
-#playerPlot .main-svg:first-child {
+#select-playerPlot .main-svg:first-child {
   border-radius: 5px;
   background: #0d1524 !important;
 }
-#playerPlot .plotbg path {
+#select-playerPlot .plotbg path {
   fill: #0d1524 !important;
 }
-#playerPlot .radial-line line {
+#select-playerPlot .radial-line line {
   stroke: white !important;
 }
-#playerPlot .xtick text {
+#select-playerPlot .xtick text {
   fill: white !important;
 }
-#playerPlot .angularaxistick text {
+#select-playerPlot .angularaxistick text {
   fill: #e0a32b !important;
 }
 
-#chart {
+#players-chart {
   font-family: "Montserrat", sans-serif !important;
 }
-#chart button {
+#players-chart button {
   height: 50px;
 }
-#chart .viewof_date {
+#players-chart .viewof_date {
   margin: 0 0 40px 0;
 }
-#chart .title {
+#players-chart .title {
   fill: white;
   font: 300 2em "Montserrat", sans-serif;
 }
-#chart .subTitle {
+#players-chart .subTitle {
   display: none;
 }
-#chart .yearText {
+#players-chart .yearText {
   fill: #e0a32b;
 }
-#chart .valueLabel {
+#players-chart .valueLabel {
   fill: white;
 }
-#chart .label {
+#players-chart .label {
   font: 600 1em "Montserrat", sans-serif;
   color: #0d1524;
 }
