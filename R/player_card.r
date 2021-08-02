@@ -1,7 +1,6 @@
 # Create the player card with his/her informations
 player_card_ui <- function(id) {
     ns <- NS(id)
-
     box(
         title = "Resume", status = "warning",
         solidHeader = TRUE,
@@ -59,7 +58,6 @@ player_card_server <- function(id) {
                 i = playerchelems[, 10];
                 paste("<b>Age:</b>", i, "years")
             })
-
         }
     )
 }

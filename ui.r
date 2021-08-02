@@ -26,6 +26,10 @@ ui <- dashboardPage(
     tags$head(
       tags$link(rel = "stylesheet", type = "text/css", href = "/style/custom.css"),
     ),
+    #load the dependecies of "prompter" package so we can have tooltips
+    use_prompt(),
+
+
     tabItems(
       selected = 1,
       tabItem(
@@ -51,6 +55,13 @@ ui <- dashboardPage(
             player_card_ui("select"),
             player_stats_ui("select"),
             player_spider_ui("select")
+          ), #fluidRow
+          fluidRow(
+            player_slams_ui("select"),
+            player_masters1000_ui("select"),
+            player_olympics_ui("select"),
+            player_weeksnr1_ui("select"),
+            player_daviscups_ui("select")
           ) #fluidRow
         ) #tabName player
     ) #tabItems

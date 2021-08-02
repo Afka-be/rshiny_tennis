@@ -1,4 +1,4 @@
-# Creates an win history bar evolving in time for every players
+# Creates an win history bar evolving through time for every players
 global_slams_ui <- function(id) {
     ns <- NS(id)
 

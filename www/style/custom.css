@@ -205,6 +205,38 @@ body a, h1 a, h2 a, h3 a, h4 a, h5 a {
   fill: #e0a32b !important;
 }
 
+.playerstats_tabset .ui.menu {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.playerstats_tabset .ui.grid + .grid {
+  margin-top: 0 !important;
+}
+.playerstats_tabset .ui.grid > * {
+  padding: 0 !important;
+}
+.playerstats_tabset .pushable {
+  height: 401px !important;
+}
+.playerstats_tabset .ui.segment {
+  border-top: 2px solid #e0a32b;
+}
+.playerstats_tabset .ui.attached.segment {
+  border: none;
+}
+.playerstats_tabset a.item {
+  color: white !important;
+  border: none !important;
+  background-color: #0d1524 !important;
+}
+.playerstats_tabset a.active {
+  border-bottom: 2px solid #e0a32b !important;
+  background-color: #1d2535 !important;
+}
+.playerstats_tabset .hint--left:after, .playerstats_tabset .hint--left:before {
+  right: 60%;
+}
+
 #players-chart {
   font-family: "Montserrat", sans-serif !important;
 }

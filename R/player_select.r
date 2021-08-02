@@ -1,13 +1,12 @@
 # Create a dropdown to select a player
 # Make it eventReactive with the action button
-
 player_select_ui <- function(id) {
     ns <- NS(id)
 
     #Define choices for players
     var_choices <- list(
         "Roger Federer",
-        "Raphael Nadal",
+        "Rafael Nadal",
         "Novak Djokovic"
     )
     box(
@@ -27,6 +26,8 @@ player_select_ui <- function(id) {
     ) #box
 }
 
+# Stores a player via dropdown 
+# Make it eventReactive with the "update" button
 player_select_server <- function(id) {
     moduleServer(
         id = id,

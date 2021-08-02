@@ -209,6 +209,41 @@ body, h1, h2, h3, h4, h5 {
         }
     }
 }
+.playerstats_tabset {
+    .ui.menu {
+        flex-wrap: wrap; // if too many tabs, surpasses box limit. So we need wrap to get the tabs in multiple rows is there are too many for the width
+    }
+    .ui.grid+.grid {
+        margin-top:0 !important;
+    }
+    .ui.grid>* {
+        padding:0 !important;
+    }
+    .pushable {
+        height:401px !important; 
+        //400px is the default height for a plot in R.
+        //we assign 401px because 400px triggers the scrollbar in the tabpanel
+    }
+    .ui.segment {
+        border-top:2px solid color(highlighted);
+    }
+    .ui.attached.segment {
+        border:none;
+    }
+    a.item {
+        color:white !important;
+        border:none !important;
+        background-color: color(primary) !important;
+    }
+    a.active {
+        border-bottom:2px solid color(highlighted) !important;
+        background-color: color(primary-light) !important;
+    }
+    .hint--left:after, .hint--left:before {
+        right:60%; //Position for the tooltip to appear in the middle and not outside of the container (by default:100%)
+    }
+
+}
 #players-chart {
     font-family: $sansserif !important;
     button {
