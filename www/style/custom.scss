@@ -25,6 +25,8 @@ $colors: (
     theme-green-icon : #069446eb,
     theme-blue : linear-gradient(to right, #4146f4, #0bdff0),
     theme-blue-icon : #003086c2,
+    theme-yellow : linear-gradient(to right, #f8aa21, #f99429),
+    theme-yellow-icon : #df6508b3,
 );
  
 $sansserif: 'Montserrat', sans-serif;
@@ -87,8 +89,9 @@ body, h1, h2, h3, h4, h5 {
     background-color: color(primary);
     border:none;
     box-shadow: none !important;
-    padding:0.9em 0;
+    padding:0.2em 0;
     overflow:hidden;
+    transition:all 0.2s ease-in-out;
     i {
         position:absolute;
         left:20px;
@@ -120,6 +123,16 @@ body, h1, h2, h3, h4, h5 {
             color:color(theme-blue-icon);
         }
     }
+    &.yellow {
+        background:color(theme-yellow);
+        i {
+            color:color(theme-yellow-icon);
+        }
+    }
+}
+.ui.card:first-child:hover { //animation to show that the jquery function exists to show the corresponding spiderchart-tab
+    margin-left:10px;
+    cursor:pointer;
 }
 .ui.statistic>.value, .ui.statistics .statistic>.value {
     color:color(primary);
@@ -165,6 +178,10 @@ body, h1, h2, h3, h4, h5 {
     button {
         min-height:38px !important;
     }
+    .button_generate_doc {
+        position:absolute;
+        right:15px;
+    }
 }
 .player_card {
     display:flex;
@@ -182,32 +199,6 @@ body, h1, h2, h3, h4, h5 {
     display:flex !important;
     flex-direction: column;
     justify-content: space-between;
-}
-#select-playerPlot {
-    .main-svg:first-child {
-        border-radius:5px;
-        background:color(primary) !important;
-    }
-    .plotbg {
-        path {
-            fill:color(primary) !important;
-        }
-    }
-    .radial-line {
-        line {
-            stroke:white !important;
-        }
-    }
-    .xtick {
-        text {
-            fill:white !important;
-        }
-    }
-    .angularaxistick {
-        text {
-            fill:color(highlighted) !important;
-        }
-    }
 }
 .playerstats_tabset {
     .ui.menu {
@@ -242,7 +233,67 @@ body, h1, h2, h3, h4, h5 {
     .hint--left:after, .hint--left:before {
         right:60%; //Position for the tooltip to appear in the middle and not outside of the container (by default:100%)
     }
-
+    .ui.menu {
+        font-size: 12px !important;
+    }
+}
+.playerspidercharts_tabset {
+    .ui.menu {
+        flex-wrap: wrap; // if too many tabs, surpasses box limit. So we need wrap to get the tabs in multiple rows is there are too many for the width
+    }
+    .ui.grid+.grid {
+        margin-top:0 !important;
+    }
+    .ui.grid>* {
+        padding:0 !important;
+    }
+    .ui.segment {
+        border-top:2px solid color(highlighted);
+    }
+    .ui.attached.segment {
+        border:none;
+    }
+    a.item {
+        color:white !important;
+        border:none !important;
+        background-color: color(primary) !important;
+    }
+    a.active {
+        border-bottom:2px solid color(highlighted) !important;
+        background-color: color(primary-light) !important;
+    }
+    .hint--left:after, .hint--left:before {
+        right:60%; //Position for the tooltip to appear in the middle and not outside of the container (by default:100%)
+    }
+    .ui.menu {
+        font-size: 12px !important;
+    }
+    .plotly {
+        .main-svg:first-child {
+            border-radius:5px;
+            background:color(primary) !important;
+        }
+        .plotbg {
+            path {
+                fill:color(primary) !important;
+            }
+        }
+        .radial-line {
+            line {
+                stroke:white !important;
+            }
+        }
+        .xtick {
+            text {
+                fill:white !important;
+            }
+        }
+        .angularaxistick {
+            text {
+                fill:color(highlighted) !important;
+            }
+        }
+    }
 }
 #players-chart {
     font-family: $sansserif !important;

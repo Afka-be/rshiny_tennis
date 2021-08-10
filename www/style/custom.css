@@ -61,8 +61,10 @@ body a, h1 a, h2 a, h3 a, h4 a, h5 a {
   border: none;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
-  padding: 0.9em 0;
+  padding: 0.2em 0;
   overflow: hidden;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 .ui.card i, .ui.cards > .card i {
   position: absolute;
@@ -98,6 +100,18 @@ body a, h1 a, h2 a, h3 a, h4 a, h5 a {
 }
 .ui.card.blue i, .ui.cards > .card.blue i {
   color: #003086c2;
+}
+.ui.card.yellow, .ui.cards > .card.yellow {
+  background: -webkit-gradient(linear, left top, right top, from(#f8aa21), to(#f99429));
+  background: linear-gradient(to right, #f8aa21, #f99429);
+}
+.ui.card.yellow i, .ui.cards > .card.yellow i {
+  color: #df6508b3;
+}
+
+.ui.card:first-child:hover {
+  margin-left: 10px;
+  cursor: pointer;
 }
 
 .ui.statistic > .value, .ui.statistics .statistic > .value {
@@ -154,6 +168,10 @@ body a, h1 a, h2 a, h3 a, h4 a, h5 a {
 .choose_player_window button {
   min-height: 38px !important;
 }
+.choose_player_window .button_generate_doc {
+  position: absolute;
+  right: 15px;
+}
 
 .player_card {
   display: -webkit-box;
@@ -188,23 +206,6 @@ body a, h1 a, h2 a, h3 a, h4 a, h5 a {
           justify-content: space-between;
 }
 
-#select-playerPlot .main-svg:first-child {
-  border-radius: 5px;
-  background: #0d1524 !important;
-}
-#select-playerPlot .plotbg path {
-  fill: #0d1524 !important;
-}
-#select-playerPlot .radial-line line {
-  stroke: white !important;
-}
-#select-playerPlot .xtick text {
-  fill: white !important;
-}
-#select-playerPlot .angularaxistick text {
-  fill: #e0a32b !important;
-}
-
 .playerstats_tabset .ui.menu {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
@@ -235,6 +236,57 @@ body a, h1 a, h2 a, h3 a, h4 a, h5 a {
 }
 .playerstats_tabset .hint--left:after, .playerstats_tabset .hint--left:before {
   right: 60%;
+}
+.playerstats_tabset .ui.menu {
+  font-size: 12px !important;
+}
+
+.playerspidercharts_tabset .ui.menu {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.playerspidercharts_tabset .ui.grid + .grid {
+  margin-top: 0 !important;
+}
+.playerspidercharts_tabset .ui.grid > * {
+  padding: 0 !important;
+}
+.playerspidercharts_tabset .ui.segment {
+  border-top: 2px solid #e0a32b;
+}
+.playerspidercharts_tabset .ui.attached.segment {
+  border: none;
+}
+.playerspidercharts_tabset a.item {
+  color: white !important;
+  border: none !important;
+  background-color: #0d1524 !important;
+}
+.playerspidercharts_tabset a.active {
+  border-bottom: 2px solid #e0a32b !important;
+  background-color: #1d2535 !important;
+}
+.playerspidercharts_tabset .hint--left:after, .playerspidercharts_tabset .hint--left:before {
+  right: 60%;
+}
+.playerspidercharts_tabset .ui.menu {
+  font-size: 12px !important;
+}
+.playerspidercharts_tabset .plotly .main-svg:first-child {
+  border-radius: 5px;
+  background: #0d1524 !important;
+}
+.playerspidercharts_tabset .plotly .plotbg path {
+  fill: #0d1524 !important;
+}
+.playerspidercharts_tabset .plotly .radial-line line {
+  stroke: white !important;
+}
+.playerspidercharts_tabset .plotly .xtick text {
+  fill: white !important;
+}
+.playerspidercharts_tabset .plotly .angularaxistick text {
+  fill: #e0a32b !important;
 }
 
 #players-chart {

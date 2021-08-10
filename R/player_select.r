@@ -21,7 +21,8 @@ player_select_ui <- function(id) {
             choices = var_choices,
             multiple = FALSE),
         actionButton(inputId = ns("clicks"),
-                        label = "Update")
+                        label = "Update"),
+        player_generatedoc_ui("select")
         ), #div
     ) #box
 }

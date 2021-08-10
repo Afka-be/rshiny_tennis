@@ -25,6 +25,7 @@ ui <- dashboardPage(
     # include the CSS file
     tags$head(
       tags$link(rel = "stylesheet", type = "text/css", href = "/style/custom.css"),
+      tags$head(tags$script(src="script/custom.js"))
     ),
     #load the dependecies of "prompter" package so we can have tooltips
     use_prompt(),
