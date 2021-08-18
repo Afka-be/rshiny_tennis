@@ -42,6 +42,14 @@ player_masters1000_server <- function(id) {
     moduleServer(
         id = id,
         module = function(input, output, session) {
+            get_masterstats <- reactive({
+                Mastersstack <- xlsx_select("masters1000_total", get_playername())
+                #Append values to the global list parameters for markdown report
+                player_params <<- append(player_params, list(masterstats = Mastersstack))
+
+                return(Mastersstack)
+            })
+
             #' Generate specific Masters 1000 chart
             #' @param master Master's 1000 name (title)
             Plot_Masters_1000 <- function(master) {
@@ -81,12 +89,12 @@ player_masters1000_server <- function(id) {
             Plot_All_Masters <- function() {
 
                 # Select xlsx and store it.
-                Matstersstack <- xlsx_select("masters1000_total", get_playername())
+                Mastersstack <- get_masterstats()
 
-                attach(Matstersstack); 
-                annee_min <- annee_minimale(Matstersstack);
+                attach(Mastersstack); 
+                annee_min <- annee_minimale(Mastersstack);
 
-                ggplot(data=Matstersstack, aes(x=Annee, y=Value, fill=Type))+
+                ggplot(data=Mastersstack, aes(x=Annee, y=Value, fill=Type))+
                 geom_bar(stat="identity", position="stack", show.legend = TRUE)+
                 geom_text(stat="identity", aes(x=Annee, y=Sum , label=Sum), vjust=-0.5, size=4, face="bold", color="white")+
                 ggtitle(paste("Evolution du nombre de Masters 1000 au cours du temps"))+

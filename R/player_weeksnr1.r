@@ -23,7 +23,6 @@ player_weeksnr1_server <- function(id) {
         id = id,
         module = function(input, output, session) {
             output$Plot_weeks <- renderPlot({
-  
                 Weeks <- xlsx_select("weeksnr1", get_playername())
                 attach(Weeks); 
                 ggplot(data=Weeks, aes(x=Annee, y=Total))+geom_line(linetype = "dashed", color="orange", size=1)+geom_point(color="orange", size=4)+

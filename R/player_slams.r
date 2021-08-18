@@ -47,6 +47,14 @@ player_slams_server <- function(id) {
     moduleServer(
         id = id,
         module = function(input, output, session) {
+            get_slamstats <- reactive({
+                Grandslams <- xlsx_select("grandslams_total", get_playername())
+                #Append values to the global list parameters for markdown report
+                player_params <<- append(player_params, list(slamstats = Grandslams))
+
+                return(Grandslams)
+            })
+
             #' Generate specific GRANDSLAM chart
             #' @param slam Grandslam's name (title)
             Plot_Grand_Slams <- function(slam) {
@@ -84,7 +92,7 @@ player_slams_server <- function(id) {
             Plot_All_Slams <- function() {
 
                 # Select xlsx and store it.
-                Grandslams <- xlsx_select("grandslams_total", get_playername())
+                Grandslams <- get_slamstats()
 
                 attach(Grandslams);
                 annee_min <- annee_minimale(Grandslams);

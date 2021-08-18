@@ -1,17 +1,171 @@
 ---
-title: "Dynamic report"
+title: "`r params$name`"
 output: html_document
 params:
-  n: NA
+  name : NA
+  nationality: NA
+  age : NA
+  globalstats : NA #contains data from chelems.csv
+  slamstats : NA #contains data from Grand Slams Stack.xlsx
+  masters1000 : NA #contains data from MastersStack.xlsx
+  masterstats: NA #contains data from MastersStack.xlsxS
+  olympicsimple : NA 
+  olympicdouble : NA
 ---
-
-```{r}
-# The `params` object is available in the document.
-params$n
+***
+```{r include = FALSE}
+library(plotly)
+library(ggplot2)
 ```
 
-A plot of `params$n` random points.
+## Results {.tabset}
 
-```{r}
-#plot(rnorm(params$n), rnorm(params$n))
+### Resume
+
+![Player's picture](`r paste0(tolower(sub(" ", "_", params$name)), ".png") `)
+
+Name : `r params$name`<br>
+Nationality : `r params$nationality`<br>
+Age : `r params$age`<br><br>
+Won grandslams : ``r params$globalstats[, 2] + params$globalstats[, 3] + params$globalstats[, 4] + params$globalstats[, 5]``<br>
+Won masters1000 : ``r params$globalstats[, 6]``<br>
+Olympics medals : ``r params$globalstats[, 7]``<br>
+Weeksnr1 : ``r params$globalstats[, 8]``<br>
+Davis Cups : ``r params$globalstats[, 11]``<br>
+
+### GrandSlams
+
+```{r echo = FALSE, message=FALSE, warning = FALSE}
+fig <- plot_ly(
+    type = 'scatterpolar',
+    mode = 'markers',
+    fill = 'toself'
+)
+fig <- fig %>%
+    add_trace(
+    r = c(params$globalstats[, 2], params$globalstats[, 3], params$globalstats[, 4], params$globalstats[, 5]),
+    theta = c('Australian Open','Rolland Garros','Wimbeldon', 'US Open'),
+    name = 'Chelems'
+    )
+fig <- fig %>%
+    layout(
+    polar = list(
+        radialaxis = list(
+        visible = T,
+        range = c(0,14)
+        )
+    )
+    )
+fig
+```
+***
+```{r echo = FALSE, message = FALSE, warning = FALSE}
+annee_minimale <- function(tab) {
+    attach(tab)
+    tag = 0;
+    for (i in 1:length(Annee)) {
+        for (j in 2:length(tab[1, ])) {
+            if (tab[i, j] == 1) {
+                annee_min = Annee[i];
+                tag = 1
+                break;
+            }
+        }
+        if (tag == 1)  {
+            break;
+        }
+    }
+    return(annee_min)
+}
+
+annee_minimale <- function(tab) {
+    attach(tab)
+    tag = 0;
+    for (i in 1:length(Annee)) {
+        for (j in 2:length(tab[1, ])) {
+            if (tab[i, j] == 1) {
+                annee_min = Annee[i];
+                tag = 1
+                break;
+            }
+        }
+        if (tag == 1)  {
+            break;
+        }
+    }
+    return(annee_min)
+}
+
+Grandslams <- params$slamstats
+
+attach(Grandslams);
+annee_min <- annee_minimale(Grandslams);
+ggplot(data= Grandslams, aes(x=Annee, y=Value, fill=Type))+
+geom_bar(stat="identity", position="stack", show.legend = TRUE)+
+geom_text(stat="identity", aes(x=Annee, y=Sum , label=Sum), vjust=-0.5, size=4, face="bold", color="white" )+
+ggtitle(paste("Evolution du nombre de grand chelems au cours du temps"))+
+ylab("Nombre de grands chelems")+
+xlab("Annee")+
+scale_x_continuous(breaks=seq(annee_min,2021,1))+
+coord_cartesian(xlim=c(annee_min,2021))+
+scale_y_continuous(breaks=seq(0,20,1), limits = c(0, 20))+
+theme_classic()+
+theme(
+plot.background = element_rect(fill = "#0d1524", color = "#0d1524", size = 0),
+panel.background = element_rect(fill = "#0d1524", color = "#0d1524", size = 0),
+panel.border = element_blank(),
+plot.title = element_text(face="bold.italic", color="white", size=16)  , #family=... pour changer le font
+axis.title.x = element_text(color="white", size=12, face="bold"),
+axis.title.y = element_text(color="white", size=12, face="bold"),
+axis.text.x = element_text(face="bold", color="white", size=12, angle=0))
+```
+
+### Masters1000
+
+```{r echo = FALSE, message = FALSE, warning = FALSE}
+fig <- plot_ly(
+    type = 'scatterpolar',
+    mode = 'markers',
+    fill = 'toself'
+)
+fig <- fig %>%
+    add_trace(
+    r = params$masters1000,
+    theta = c('Indian Wells','Miami Open','Monte Carlo Masters', 'Madrid Open', 'Rome Open', 'Canadian Open', 'Cincinnati Masters', 'Shanghai Masters', 'Paris Masters' ),
+    name = 'Masters 1000'
+    )
+fig <- fig %>%
+    layout(
+    polar = list(
+        radialaxis = list(
+        visible = T,
+        range = c(0,11)
+        )
+    )
+    )
+fig
+```
+***
+```{r echo = FALSE, message = FALSE, warning = FALSE}
+Mastersstack <- params$masterstats
+attach(Mastersstack); 
+annee_min <- annee_minimale(Mastersstack);
+ggplot(data=Mastersstack, aes(x=Annee, y=Value, fill=Type))+
+geom_bar(stat="identity", position="stack", show.legend = TRUE)+
+geom_text(stat="identity", aes(x=Annee, y=Sum , label=Sum), vjust=-0.5, size=4, face="bold", color="white")+
+ggtitle(paste("Evolution du nombre de Masters 1000 au cours du temps"))+
+ylab("Nombre de Masters 1000")+
+xlab("Annee")+
+scale_x_continuous(breaks=seq(annee_min,2021,1))+
+coord_cartesian(xlim=c(annee_min,2021))+
+scale_y_continuous(breaks=seq(0,36,1), limits = c(0, 36))+
+theme_classic()+
+theme(
+plot.background = element_rect(fill = "#0d1524", color = "#0d1524", size = 0),
+panel.background = element_rect(fill = "#0d1524", color = "#0d1524", size = 0),
+panel.border = element_blank(),
+plot.title = element_text(face="bold.italic", color="white", size=16)  , #family=... pour changer le font
+axis.title.x = element_text(color="white", size=12, face="bold"),
+axis.title.y = element_text(color="white", size=12, face="bold"),
+axis.text.x = element_text(face="bold", color="white", size=12, angle=0))
 ```

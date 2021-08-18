@@ -134,6 +134,10 @@ body a, h1 a, h2 a, h3 a, h4 a, h5 a {
   width: 100%;
 }
 
+.ui[class*="top attached"].menu {
+  margin-top: 0;
+}
+
 .ui.top.menu.dashboard-header .logo {
   height: 60px;
 }
@@ -171,6 +175,7 @@ body a, h1 a, h2 a, h3 a, h4 a, h5 a {
 .choose_player_window .button_generate_doc {
   position: absolute;
   right: 15px;
+  display: none;
 }
 
 .player_card {

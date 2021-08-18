@@ -152,6 +152,9 @@ body, h1, h2, h3, h4, h5 {
         width:100%;
     }
 }
+.ui[class*="top attached"].menu {
+    margin-top:0;
+}
 .ui.top.menu.dashboard-header .logo {
     height:60px;
 }
@@ -181,6 +184,7 @@ body, h1, h2, h3, h4, h5 {
     .button_generate_doc {
         position:absolute;
         right:15px;
+        display:none;
     }
 }
 .player_card {

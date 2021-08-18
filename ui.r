@@ -17,14 +17,14 @@ ui <- dashboardPage(
     inverted = TRUE,
     sidebarMenu(
       menuItem(tabName = "homepage", "Homepage", icon = icon("dashboard")),
-      menuItem(tabName = "general", "General overview", icon = icon("dashboard")),
+      #menuItem(tabName = "general", "General overview", icon = icon("dashboard")),
       menuItem(tabName = "player", "Player", icon = icon("address card"))
     )
   ),
   dashboardBody(
     # include the CSS file
     tags$head(
-      tags$link(rel = "stylesheet", type = "text/css", href = "/style/custom.css"),
+      tags$link(rel = "stylesheet", type = "text/css", href = "style/custom.css"),
       tags$head(tags$script(src="script/custom.js"))
     ),
     #load the dependecies of "prompter" package so we can have tooltips

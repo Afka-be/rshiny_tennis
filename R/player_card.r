@@ -2,7 +2,7 @@
 player_card_ui <- function(id) {
     ns <- NS(id)
     box(
-        title = "Resume", status = "warning",
+        title = "Resume", status = "warning", collapsible = FALSE,
         solidHeader = TRUE,
         width = 4,
         class = "player_card",
@@ -23,13 +23,34 @@ player_card_server <- function(id) {
     moduleServer(
         id = id,
         module = function(input, output, session) {
+            get_nationality <- reactive({
+                playerchelems <- subset(chelemsCSV, Nom == get_playername())
+                nationality = playerchelems[, 9];
+
+                #Append values to the global list parameters for markdown report
+                player_params <<- append(player_params, list(name = get_playername()))
+                player_params <<- append(player_params, list(nationality = nationality))
+                return(nationality)
+            })
+
+            get_age <- reactive({
+                playerchelems <- subset(chelemsCSV, Nom == get_playername())
+                age = playerchelems[, 10];
+
+                #Append this value to the global list parameters for markdown report
+                player_params <<- append(player_params, list(age = age))
+                return(age)
+            })
+
             # Create circle image Avatar
             output$playerimage <- renderImage({
                 #Replace the space with an underscore for the image src
-                var_playerimage <- sub(" ", "_",  get_playername())
+                var_playerimage <- tolower(sub(" ", "_",  get_playername()))
+                filename <- normalizePath(file.path('players_pictures', 
+                                            paste(var_playerimage, '.png', sep='')))
                 return(list(
                     width = "200px",
-                    src = paste("players_pictures/", var_playerimage, ".png", sep = ""),
+                    src = filename,
                     filetype = "image/png",
                     alt = paste(get_playername())
                 ))
@@ -37,26 +58,17 @@ player_card_server <- function(id) {
 
             # Outputs player name
             output$nom_text <- renderText({
-                playerchelems <- subset(chelemsCSV, Nom == get_playername())
-                h = playerchelems[, 9];
-                i = playerchelems[, 10];
                 paste("<b>Nom:</b>", get_playername())
             })
 
             # Outputs player nationality
             output$nationalite_text <- renderText({
-                playerchelems <- subset(chelemsCSV, Nom == get_playername())
-                h = playerchelems[, 9];
-                i = playerchelems[, 10];
-                paste("<b>Nationalité:</b>", h)
+                paste("<b>Nationalité:</b>", get_nationality())
             })
 
             # Outputs player age
             output$age_text <- renderText({
-                playerchelems <- subset(chelemsCSV, Nom == get_playername())
-                h = playerchelems[, 9];
-                i = playerchelems[, 10];
-                paste("<b>Age:</b>", i, "years")
+                paste("<b>Age:</b>", get_age(), "years")
             })
         }
     )

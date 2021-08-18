@@ -8,4 +8,9 @@ $( document ).ready(function() {
     $('#select-Olympicmedals').click(function(){
         $('.playerspidercharts_tabset a:nth-child(3)').click()
     });    
+
+    //Show the generate doc button only after selecting a player
+    $('#select-clicks').click(function(){
+        $('.button_generate_doc').show("fast")
+    });
 });
