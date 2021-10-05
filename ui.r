@@ -13,10 +13,10 @@ ui <- dashboardPage(
                 ),
 
   dashboardSidebar(
-    size = "wide",
+    size = "thin",
     inverted = TRUE,
     sidebarMenu(
-      menuItem(tabName = "homepage", "Homepage", icon = icon("dashboard")),
+      #menuItem(tabName = "homepage", "Homepage", icon = icon("dashboard")),
       #menuItem(tabName = "general", "General overview", icon = icon("dashboard")),
       menuItem(tabName = "player", "Player", icon = icon("address card"))
     )
@@ -32,7 +32,7 @@ ui <- dashboardPage(
 
 
     tabItems(
-      selected = 1,
+      selected = 2,
       tabItem(
         tabName = "homepage",
         box(h1("Welcome"), title = "How to use", width = 16, color = "orange")

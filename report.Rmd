@@ -44,7 +44,7 @@ fig <- plot_ly(
 fig <- fig %>%
     add_trace(
     r = c(params$globalstats[, 2], params$globalstats[, 3], params$globalstats[, 4], params$globalstats[, 5]),
-    theta = c('Australian Open','Rolland Garros','Wimbeldon', 'US Open'),
+    theta = c('Australian Open','Roland Garros','Wimbeldon', 'US Open'),
     name = 'Chelems'
     )
 fig <- fig %>%

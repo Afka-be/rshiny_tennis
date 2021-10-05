@@ -31,7 +31,7 @@ player_slams_ui <- function(id) {
             tabs = list(
                 list(menu = "All", content = plotOutput(ns("Plot_All_Slams"))),
                 list(menu = "Australian Open", content = plotOutput(ns("Plot_Australian_Open"))),
-                list(menu = "Rolland Garros", content = plotOutput(ns("Plot_Rolland_Garros"))),
+                list(menu = "Roland Garros", content = plotOutput(ns("Plot_Roland_Garros"))),
                 list(menu = "Wimbeldon", content = plotOutput(ns("Plot_Wimbeldon"))),
                 list(menu = "US Open", content = plotOutput(ns("Plot_US_Open")))
             ) #list
@@ -63,7 +63,7 @@ player_slams_server <- function(id) {
                 Grandslams <- xlsx_select("grandslams_unit", get_playername())
 
                 attach(Grandslams);
-                n_max <- max(Australian_Open,Rolland_Garros,Wimbeldon,US_Open);
+                n_max <- max(Australian_Open,Roland_Garros,Wimbeldon,US_Open);
                 annee_min <- annee_minimale(Grandslams);
                 name <- sub("_", " ", deparse(substitute(slam)));
 
@@ -125,8 +125,8 @@ player_slams_server <- function(id) {
                 Plot_Grand_Slams(Australian_Open)
             })
 
-            output$Plot_Rolland_Garros <- renderPlot({
-                Plot_Grand_Slams(Rolland_Garros)
+            output$Plot_Roland_Garros <- renderPlot({
+                Plot_Grand_Slams(Roland_Garros)
             })
 
             output$Plot_Wimbeldon <- renderPlot({

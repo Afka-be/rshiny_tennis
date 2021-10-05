@@ -193,7 +193,7 @@ player_spider_server <- function(id) {
                 fig <- fig %>%
                     add_trace(
                     r = c(a, b, c, d),
-                    theta = c('Australian Open','Rolland Garros','Wimbeldon', 'US Open'),
+                    theta = c('Australian Open','Roland Garros','Wimbeldon', 'US Open'),
                     name = 'Chelems'
                     )
                 fig <- fig %>%

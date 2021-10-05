@@ -38,7 +38,9 @@ player_olympics_server <- function(id) {
 
                 leaflet(josimple) %>% addTiles() %>%
                 addMarkers(~Long, ~Lat, label = ~htmlEscape(paste(City, Year,":", Simple_en,  "medal in simple")),icon = ~medalIcons[Simple])  %>%
-                addMarkers(data=jodouble,~Long, ~Lat, label = ~htmlEscape(paste(City, Year,":",Double_en, "medal in double")),icon = ~medalIcons[Double]) 
+                addMarkers(data=jodouble,~Long, ~Lat, label = ~htmlEscape(paste(City, Year,":",Double_en, "medal in double")),icon = ~medalIcons[Double]) %>%
+                addProviderTiles("CartoDB.DarkMatter") %>%
+                setView(lng = 2.80, lat = 46.80, zoom = 2)
             })
         }
     )

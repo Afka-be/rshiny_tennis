@@ -11,6 +11,7 @@ library(ggplot2)
 library(leaflet)
 library(htmltools)
 library(scales)
+library(rsconnect)
 #library(shinyBS) #Jquery conflict, have to switch to bsplus which is updated
 library(prompter)
 library(dplyr)
